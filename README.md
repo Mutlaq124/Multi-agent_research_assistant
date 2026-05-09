@@ -6,8 +6,6 @@ MARA is a high-performance, agentic research platform built on **LangGraph**, **
 ![MARA Research Interface](img/interface_preview.png)
 *MARA generating a concise AI research report with parallel agent execution.*
 
-*(Video demo demonstrating the agent execution to be added here)*
-
 ## Key Features
 - **Parallel Multi-Agent Execution**: Orchestrates multiple LLM-powered agents to plan and execute research in parallel.
 - **Deep Academic Integration**: Leverages Arxiv API for grounded, scientific AI insights.
@@ -15,7 +13,7 @@ MARA is a high-performance, agentic research platform built on **LangGraph**, **
 - **Human-in-the-Loop**: Optional review node allowing experts to refine reports before final publication.
 - **Stateless Architecture**: Designed for modern cloud environments like Vercel and Render.
 
-## 🏗️ Project Structure
+## Project Structure
 ```text
 MARA/
 ├── backend/          # FastAPI + LangGraph Logic
@@ -33,13 +31,13 @@ MARA/
 └── deployment.md     # Deployment & Git guide
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **Backend**: Python 3.11+, FastAPI, LangGraph, LangChain, Pydantic.
 - **Frontend**: React 18, Vite, Tailwind CSS, TypeScript.
 - **Inference**: DeepSeek via OpenRouter.
 - **Search**: Tavily AI, Arxiv API.
 
-## 🏁 Quick Start (Local)
+## Quick Start (Local)
 
 ### 1. Backend Setup
 ```powershell
@@ -63,7 +61,7 @@ If backend is not at default URL, set `frontend/.env`:
 VITE_API_URL=http://localhost:8000
 ```
 
-## 🧠 Architecture Workflow
+## Architecture Workflow
 MARA uses a sophisticated StateGraph to manage the research lifecycle:
 
 ```mermaid
@@ -85,11 +83,6 @@ graph TD
     Writer --> HumanReview{"Human In The Loop"}
     HumanReview -->|Revise| Writer
     HumanReview -->|Approve/Auto| Output["Markdown Generation"]
-```
-
-## 📄 Documentation
-- [Portfolio & Design Philosophy](portfolio.md): Problem, Solution, and Key Learnings.
-- [Deployment Guide](deployment.md): Technical guidelines for Vercel/Render and Git Workflow.
 
 ## License
 Distributed under the MIT License.

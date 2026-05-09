@@ -36,8 +36,7 @@ graph TD
     Writer --> HumanReview{"Human In The Loop"}
     HumanReview -->|Revise| Writer
     HumanReview -->|Approve/Auto| Output["Markdown Generation"]
-
-
+```
 
 ## Project Structure
 ```text

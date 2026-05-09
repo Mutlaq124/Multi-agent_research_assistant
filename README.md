@@ -13,6 +13,32 @@ MARA is a high-performance, agentic research platform built on **LangGraph**, **
 - **Human-in-the-Loop**: Optional review node allowing experts to refine reports before final publication.
 - **Stateless Architecture**: Designed for modern cloud environments like Vercel and Render.
 
+
+## Architecture Workflow
+MARA uses a sophisticated StateGraph to manage the research lifecycle:
+
+```mermaid
+graph TD
+    UserQuery["User Query"] --> IntentClassifier{"Intent Classifier"}
+    IntentClassifier -->|Greeting/General| SimpleChat["Simple Chat Node"]
+    IntentClassifier -->|AI Research| Planner["Planner Node"]
+    
+    Planner -->|Search Strategy| Researcher["Researcher Node"]
+    
+    subgraph Research Phase
+        Researcher --> WebSearch["Tavily Web Agent"]
+        Researcher --> AcademicSearch["Arxiv Academic Agent"]
+    end
+    
+    WebSearch --> Writer["Writer Node"]
+    AcademicSearch --> Writer
+    
+    Writer --> HumanReview{"Human In The Loop"}
+    HumanReview -->|Revise| Writer
+    HumanReview -->|Approve/Auto| Output["Markdown Generation"]
+
+
+
 ## Project Structure
 ```text
 MARA/
@@ -60,29 +86,5 @@ If backend is not at default URL, set `frontend/.env`:
 ```dotenv
 VITE_API_URL=http://localhost:8000
 ```
-
-## Architecture Workflow
-MARA uses a sophisticated StateGraph to manage the research lifecycle:
-
-```mermaid
-graph TD
-    UserQuery["User Query"] --> IntentClassifier{"Intent Classifier"}
-    IntentClassifier -->|Greeting/General| SimpleChat["Simple Chat Node"]
-    IntentClassifier -->|AI Research| Planner["Planner Node"]
-    
-    Planner -->|Search Strategy| Researcher["Researcher Node"]
-    
-    subgraph Research Phase
-        Researcher --> WebSearch["Tavily Web Agent"]
-        Researcher --> AcademicSearch["Arxiv Academic Agent"]
-    end
-    
-    WebSearch --> Writer["Writer Node"]
-    AcademicSearch --> Writer
-    
-    Writer --> HumanReview{"Human In The Loop"}
-    HumanReview -->|Revise| Writer
-    HumanReview -->|Approve/Auto| Output["Markdown Generation"]
-
 ## License
 Distributed under the MIT License.

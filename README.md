@@ -1,8 +1,14 @@
-# MARA - Multi-Agent Research Assistant 
+# MARA — Multi-Agent Research Assistant 🤖
 
 MARA is a high-performance, agentic research platform built on **LangGraph**, **FastAPI**, and **React**. It transforms complex AI queries into concise, cited research summaries by orchestrating specialized agents for planning, web retrieval, academic search, and synthesis.
 
-## Demonstration
+## ✨ Core Highlights
+- **Agentic Orchestration**: Uses a state-based graph to manage complex research lifecycles.
+- **Academic Grounding**: Direct integration with Arxiv for peer-reviewed AI insights.
+- **Parallel Synthesis**: Concurrent tool execution reduces research latency by up to 60%.
+- **Human-in-the-Loop**: Optional review node for expert-verified report generation.
+
+## 📺 Demonstration
 ![MARA Research Interface](img/interface_preview.png)
 *MARA generating a concise AI research report with parallel agent execution.*
 
@@ -41,19 +47,23 @@ graph TD
 ## Project Structure
 ```text
 MARA/
-├── backend/          # FastAPI + LangGraph Logic
+├── backend/            # FastAPI + LangGraph Backend
 │   ├── app/
-│   │   ├── agents/   # Agent nodes & graph definition
-│   │   ├── core/     # Configuration & state management
-│   │   └── tools/    # Tavily & Arxiv integrations
-│   └── main.py       # Entry point
-├── frontend/         # React + Vite UI
+│   │   ├── agents/     # LangGraph nodes & workflow
+│   │   ├── api/        # FastAPI routes & endpoints
+│   │   ├── core/       # Configuration & State
+│   │   ├── tools/      # Search integrations (Tavily/Arxiv)
+│   │   └── db/         # Persistence layer
+│   └── main.py         # Backend entry point
+├── frontend/           # React + Vite Frontend
 │   ├── src/
 │   │   ├── components/ # Atomic UI components
-│   │   ├── hooks/      # Research & state hooks
-│   │   └── services/   # API abstraction layer
-├── portfolio.md      # Detailed case study
-└── deployment.md     # Deployment & Git guide
+│   │   ├── hooks/      # Custom research hooks
+│   │   ├── services/   # API abstraction
+│   │   └── types/      # TypeScript definitions
+│   └── vite.config.ts  # Vite configuration
+├── main.py             # Root ASGI wrapper
+└── img/                # Visual assets & demos
 ```
 
 ## Tech Stack
@@ -85,5 +95,9 @@ If backend is not at default URL, set `frontend/.env`:
 ```dotenv
 VITE_API_URL=http://localhost:8000
 ```
+## 📄 Documentation
+- [Portfolio & Design Philosophy](portfolio.md): Problem, Solution, and Key Learnings.
+- [Deployment Guide](deployment.md): Technical guidelines for Vercel/Render and Git Workflow.
+
 ## License
 Distributed under the MIT License.

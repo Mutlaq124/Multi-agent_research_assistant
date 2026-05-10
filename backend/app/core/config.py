@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
 
     # CORS
-    BACKEND_CORS_ORIGINS: List[str] = [
+    BACKEND_CORS_ORIGINS: Any = [
         "http://localhost:5173",
         "http://localhost:3000",
         "https://*.vercel.app",
@@ -27,12 +27,23 @@ class Settings(BaseSettings):
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
-    def assemble_cors_origins(cls, v: Any) -> List[str] | str:
-        if isinstance(v, str) and not v.startswith("["):
+    def assemble_cors_origins(cls, v: Any) -> List[str]:
+        if isinstance(v, str) and v.strip() != "":
+            if v.startswith("[") and v.endswith("]"):
+                import json
+                try:
+                    return json.loads(v)
+                except json.JSONDecodeError:
+                    pass
             return [i.strip() for i in v.split(",")]
-        elif isinstance(v, (list, str)):
+        elif isinstance(v, list):
             return v
-        raise ValueError(v)
+        return [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "https://*.vercel.app",
+            "https://*.onrender.com"
+        ]
 
     # LLM Configuration
     OPENAI_API_KEY: str

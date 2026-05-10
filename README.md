@@ -95,9 +95,6 @@ If backend is not at default URL, set `frontend/.env`:
 ```dotenv
 VITE_API_URL=http://localhost:8000
 ```
-## Documentation
-- [Portfolio & Design Philosophy](portfolio.md): Problem, Solution, and Key Learnings.
-- [Deployment Guide](deployment.md): Technical guidelines for Vercel/Render and Git Workflow.
 
 ## License
 Distributed under the MIT License.

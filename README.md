@@ -1,14 +1,14 @@
-# MARA — Multi-Agent Research Assistant 🤖
+# MARA - Multi-Agent Research Assistant
 
 MARA is a high-performance, agentic research platform built on **LangGraph**, **FastAPI**, and **React**. It transforms complex AI queries into concise, cited research summaries by orchestrating specialized agents for planning, web retrieval, academic search, and synthesis.
 
-## ✨ Core Highlights
+## Core Highlights
 - **Agentic Orchestration**: Uses a state-based graph to manage complex research lifecycles.
 - **Academic Grounding**: Direct integration with Arxiv for peer-reviewed AI insights.
 - **Parallel Synthesis**: Concurrent tool execution reduces research latency by up to 60%.
 - **Human-in-the-Loop**: Optional review node for expert-verified report generation.
 
-## 📺 Demonstration
+## Demonstration
 ![MARA Research Interface](img/interface_preview.png)
 *MARA generating a concise AI research report with parallel agent execution.*
 
@@ -95,7 +95,7 @@ If backend is not at default URL, set `frontend/.env`:
 ```dotenv
 VITE_API_URL=http://localhost:8000
 ```
-## 📄 Documentation
+## Documentation
 - [Portfolio & Design Philosophy](portfolio.md): Problem, Solution, and Key Learnings.
 - [Deployment Guide](deployment.md): Technical guidelines for Vercel/Render and Git Workflow.
 

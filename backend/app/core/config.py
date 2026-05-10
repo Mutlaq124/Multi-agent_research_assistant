@@ -1,8 +1,8 @@
 """Application configuration."""
 from functools import lru_cache
 from pathlib import Path
-from typing import List
-
+from typing import Any, List
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -24,6 +24,15 @@ class Settings(BaseSettings):
         "https://*.vercel.app",
         "https://*.onrender.com"
     ]
+
+    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Any) -> List[str] | str:
+        if isinstance(v, str) and not v.startswith("["):
+            return [i.strip() for i in v.split(",")]
+        elif isinstance(v, (list, str)):
+            return v
+        raise ValueError(v)
 
     # LLM Configuration
     OPENAI_API_KEY: str
